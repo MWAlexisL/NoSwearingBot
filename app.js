@@ -4,13 +4,7 @@ const fs = require('fs');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('noswearingbot', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
-
-
+// reads all file in /commands & convert them as actual client commands
 fs.readdir("./commands/", (err, files) => {
 
     if (err) console.log(err);
@@ -22,28 +16,21 @@ fs.readdir("./commands/", (err, files) => {
     });
 });
 
-client.on('ready', () => {
-    console.log("Logged in as " + client.user.tag + "!");
-});
-
 client.on('message', msg => {
     const messageArray = msg.content.split(" ");
     if (messageArray[0] !== config.prefix) return;
 
     const args = messageArray.slice(2);
     const command = client.commands.get(messageArray[1]);
-    if (command) command.run(sequelize, msg, args);
+    if (command) command.run(client, msg, args);
 });
 
-// client.on('guildMemberSpeaking', (user, speaking ) => {
-//    console.log(speaking);
-// });
-
-
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+    if (newMember.user.bot) return;
     if (newMember.voiceChannelID !== null) {
-        const command = client.commands.get('join');
-        command.run(client, newMember)
+        if (oldMember.voiceChannelID !== null) oldMember.voiceChannel.leave();
+        const join = require('./scripts/join.js');
+        join.run(newMember);
     } else {
         oldMember.voiceChannel.leave();
     }
