@@ -3,5 +3,11 @@ module.exports.help = {
 };
 
 module.exports.run = (client, member, args) => {
-    member.voiceChannel.join();
+    member.voiceChannel.join().then(connection => {
+        connection.on('speaking', (user, speaking) => {
+           if (speaking) {
+
+           }
+        });
+    });
 };

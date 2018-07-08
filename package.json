@@ -1,6 +1,6 @@
 {
   "name": "noswearingbot",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "SORRY SIR THIS IS A CRHISTIAN SERVER SO NO SWEARING",
   "main": "app.ts",
   "scripts": {
@@ -14,7 +14,10 @@
     "dialogflow": "^0.5.0",
     "discord.js": "^11.3.2",
     "ffmpeg-binaries": "^4.0.0",
-    "opusscript": "0.0.6"
+    "mysql2": "^1.5.3",
+    "opusscript": "0.0.6",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0"
   },
   "devDependencies": {
     "typescript": "^2.9.2"
