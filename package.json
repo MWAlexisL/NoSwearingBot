@@ -1,0 +1,20 @@
+{
+  "name": "noswearingbot",
+  "version": "0.0.0",
+  "description": "SORRY SIR THIS IS A CRHISTIAN SERVER SO NO SWEARING",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
+    "@types/node": "^10.3.6",
+    "dialogflow": "^0.5.0",
+    "discord.js": "^11.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  }
+}
