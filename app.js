@@ -25,7 +25,19 @@ client.on('message', msg => {
 
     const args = messageArray.slice(2);
     const command = client.commands.get(messageArray[1]);
-    command.run(client, msg, args);
+    if (command) command.run(client, msg, args);
+});
+
+// client.on('guildMemberSpeaking', (user, speaking ) => {
+//    console.log(speaking);
+// });
+
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    if (newMember.voiceChannelID !== null) {
+        const command = client.commands.get('join');
+        command.run(client, newMember)
+    }
 });
 
 client.login(config.token);

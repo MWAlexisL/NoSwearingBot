@@ -2,6 +2,6 @@ module.exports.help = {
     name: "join"
 };
 
-module.exports.run = (client, message, args) => {
-    message.member.voiceChannel.join();
+module.exports.run = (client, member, args) => {
+    member.voiceChannel.join();
 };
