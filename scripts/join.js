@@ -5,13 +5,11 @@ module.exports.run = member => {
     member.voiceChannel.join().then(connection => {
         const receiver = connection.createReceiver();
         connection.on('speaking', (user, speaking) => {
-           if (speaking) {
-               // console.log(user);
-               const audio = receiver.createPCMStream(user);
-               // const output = generateOutputFile(member.voiceChannel, member.user);
-               // audio.pipe(output);
-               // console.log(output)
-           }
+            if (speaking) {
+                const audio = receiver.createPCMStream(user);
+                const output = generateOutputFile(member.voiceChannel, member.user);
+                audio.pipe(output);
+            }
         });
     });
 };
