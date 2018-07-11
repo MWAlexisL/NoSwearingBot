@@ -15,6 +15,9 @@ fs.readdir("./commands/", (err, files) => {
         client.commands.set(props.help.name, props);
     });
 });
+client.on('ready', () => {
+    client.user.setActivity('gubs en train de dev', {type: "WATCHING"});
+});
 
 client.on('message', msg => {
     const messageArray = msg.content.split(" ");
@@ -27,8 +30,10 @@ client.on('message', msg => {
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (newMember.user.bot) return;
+    if (newMember.voiceChannelID === oldMember.voiceChannelID) return;
     if (newMember.voiceChannelID !== null) {
-        if (oldMember.voiceChannelID !== null) oldMember.voiceChannel.leave();
+        console.log(oldMember.voiceChannelID);
+        if (![null, undefined].includes(oldMember.voiceChannelID)) oldMember.voiceChannel.leave();
         const join = require('./scripts/join.js');
         join.run(newMember);
     } else {
