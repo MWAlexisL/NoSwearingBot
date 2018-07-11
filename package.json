@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/common": "^0.20.3",
     "@google-cloud/storage": "^1.7.0",
     "@types/node": "^10.3.6",
     "dialogflow": "^0.5.0",
